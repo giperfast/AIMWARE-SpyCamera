@@ -18,14 +18,15 @@ function handler(cmd)
         backupAnglesEngine = backupAngles;
         toggle = true;
     else
-        client.Command("r_drawviewmodel 1");
-        if backupAngles ~= GetViewAngles then
-            backupAngles = GetViewAngles;
-        end
         if toggle then
+            cmd:SetViewAngles(backupAngles);
             engine.SetViewAngles(backupAnglesEngine);
             toggle = false;
         end
+        if backupAngles ~= GetViewAngles then
+            backupAngles = GetViewAngles;
+        end
+        client.Command("r_drawviewmodel 1");
     end
 end
 
